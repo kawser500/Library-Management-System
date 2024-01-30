@@ -15,6 +15,7 @@ You can do the following actions using this system:
         - Return a book to the library database (type "return book")
         - View a user's info (type "view user")
         - Check late fines on a user's system (type "late fines")
+        - Search book title's, author name or genre (type "search")
 
 If you have any issues, please do not hesitate to contact us!
 
@@ -22,7 +23,7 @@ If you have any issues, please do not hesitate to contact us!
 
 print(intro)
 
-db = sqlite3.connect(r"\path\to\your\directory\books_db.sqlite", detect_types=sqlite3.PARSE_DECLTYPES)
+db = sqlite3.connect(r"C:\Users\messi\Documents\Bootcamp - Python\Portfolio\books_db.sqlite", detect_types=sqlite3.PARSE_DECLTYPES)
 print("Connection Established!")
 
 cursor = db.cursor()
@@ -220,6 +221,26 @@ def view_user_info(user_id):
         print("User not found or has no transactions.")
 
 
+def search_books(search_term):
+    # Function to search for books by author name, title, or genre
+
+    query = """
+        SELECT * FROM books
+        WHERE author LIKE ? OR title LIKE ? OR genre LIKE ?
+    """
+
+    search_pattern = f"%{search_term}%"
+
+    cursor.execute(query, (search_pattern, search_pattern, search_pattern))
+    result = cursor.fetchall()
+
+    if result:
+        print("Search Results:")
+        for row in result:
+            print(f"ISBN: {row[0]}, Title: {row[1]}, Author: {row[2]}, Copies: {row[3]}, Genre: {row[4]}")
+    else:
+        print("No matching books found.")
+
 
 while True:
 
@@ -249,6 +270,10 @@ while True:
         user_id = input("Please enter the User ID: ")
         book_isbn = input("Please enter the book ISBN: ")
         late_fine(user_id, book_isbn)
+
+    elif action == "search":
+        search_term = input("Please enter a Book title, Author name or Genre: ")
+        search_books(search_term)
 
     else:
         raise ValueError("Please choose an option from the list above.")
