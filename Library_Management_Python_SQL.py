@@ -23,7 +23,7 @@ If you have any issues, please do not hesitate to contact us!
 
 print(intro)
 
-db = sqlite3.connect(r"\path\to\your\directory\books_db.sqlite", detect_types=sqlite3.PARSE_DECLTYPES)print("Connection Established!")
+db = sqlite3.connect("books_db.sqlite", detect_types=sqlite3.PARSE_DECLTYPES)print("Connection Established!")
 
 cursor = db.cursor()
 
