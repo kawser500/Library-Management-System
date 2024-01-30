@@ -14,3 +14,5 @@ You can do the following actions using this program:
 - View a user's info (type "view user").
 
 - Check late fines on a user's system (type "late fines").
+
+- Search book title's, author name or genre (type "search")
