@@ -1,5 +1,5 @@
 # Library Management System
-This a program created using Python and SQLite in order to create a Library Management system. 
+This a program created using Python and SQL (SQLite) in order to create a Library Management system. 
 The database is stored in an SQLITE file. 
 
 You can do the following actions using this program:
